@@ -1,15 +1,16 @@
 init:
-	python -m venv venv
-	.\venv\Scripts\activate && pip install -r requirements.txt
-
-venv:
-	.\venv\Scripts\activate
+	python3 -m venv venv && \
+	source venv/bin/activate && \
+	pip install -r requirements-docker.txt
 
 train:
-	.\venv\Scripts\activate && python -m src.Models.Orquetrator
+	source venv/bin/activate && \
+	python3 -m src.Models.Orquetrator
 
 run:
-	.\venv\Scripts\activate && python -m uvicorn src.Api.main:app --reload
+	source venv/bin/activate && \
+	python3 -m uvicorn src.Api.main:app --reload
 
 freeze:
-	.\venv\Scripts\activate &&	pip freeze > requirements.txt
+	source venv/bin/activate && \
+	pip3 freeze > requirements-docker.txt

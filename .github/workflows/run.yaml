@@ -44,6 +44,6 @@ jobs:
       - name: Send log file to artifact
         uses: actions/upload-artifact@v4
         with:
-          name: train-log
-          path: ./src/Models/train.log
+          name: train.log
+          path: ./train.log
 
