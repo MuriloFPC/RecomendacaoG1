@@ -10,12 +10,10 @@ def DownloadDataFromGoogleDrive(logger=Log):
     url = 'https://drive.google.com/uc?id=13rvnyK5PJADJQgYe-VbdXb7PpLPj7lPr'
 
     # Path where you want to save the downloaded file
-    output_path = '../../Data/data.zip'
+    output_path = os.path.join(script_dir,'Data')
+    ouuput_path_file = os.path.join(output_path,'Data.zip')
 
-    if not os.path.exists('../../Data'):
-        os.makedirs('../../Data')
-
-    if os.path.exists(output_path):
+    if os.path.exists(ouuput_path_file):
         logger.info("Zip já existe, retornando")
         return
 
@@ -23,5 +21,5 @@ def DownloadDataFromGoogleDrive(logger=Log):
     gdown.download(url, output_path, quiet=False)
 
     # Unzip the file
-    with zipfile.ZipFile(output_path, 'r') as zip_ref:
-        zip_ref.extractall('../../Data')
+    with zipfile.ZipFile(ouuput_path_file, 'r') as zip_ref:
+        zip_ref.extractall(ouuput_path_file)

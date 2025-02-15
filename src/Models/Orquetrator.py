@@ -7,5 +7,5 @@ _logger = Log(True)
 
 
 DownloadDataFromGoogleDrive(_logger)
-#TrainModelFAISS(_logger)
+TrainModelFAISS(_logger)
 TrainModelMAB(_logger)
