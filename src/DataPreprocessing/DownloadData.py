@@ -3,6 +3,7 @@ import gdown
 import zipfile
 
 from src.Utils.log import Log
+from src.Utils.variables import script_dir
 
 
 def DownloadDataFromGoogleDrive(logger=Log):
