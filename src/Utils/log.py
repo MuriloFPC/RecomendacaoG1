@@ -11,8 +11,8 @@ class Log(BaseModel):
                 level=logging.INFO,
                 format="%(asctime)s - %(levelname)s - %(message)s",
                 handlers=[
-                    logging.FileHandler("api_logs.log"),  # Salvar logs em arquivo
-                    logging.StreamHandler(sys.stdout)  # Mostrar logs no terminal (stdout)
+                    logging.FileHandler("train.log"),
+                    logging.StreamHandler(sys.stdout)
             ])
 
         else:
@@ -20,7 +20,7 @@ class Log(BaseModel):
                 level=logging.INFO,
                 format="%(asctime)s - %(levelname)s - %(message)s",
                 handlers=[
-                    logging.StreamHandler(sys.stdout)  # Mostrar logs no terminal (stdout)
+                    logging.StreamHandler(sys.stdout)
             ])
 
     def info(self, message):

@@ -40,3 +40,10 @@ jobs:
         run: |
           docker push recomendacao_g1:${{ github.sha }}
           docker push recomendacao_g1:latest
+
+      - name: Send log file to artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: train-log
+          path: ./train.log
+
