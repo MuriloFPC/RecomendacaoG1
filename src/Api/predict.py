@@ -30,8 +30,8 @@ mapping_index = model_data_mab["mapping_index"]
 
 logs = Log(False)
 
-df_users = read_all_csv_files_in_folder(GetVariable('UserNewsPath'))
-df_news = read_all_csv_files_in_folder(GetVariable('NewsPath'))
+df_users = read_all_csv_files_in_folder(os.path.join(script_dir,GetVariable('UserNewsPath')))
+df_news = read_all_csv_files_in_folder(os.path.join(script_dir,GetVariable('NewsPath')))
 
 # Explodir a coluna 'history' para ter uma linha por news_id
 df_users_exploded = df_users.assign(history=df_users['history'].str.split(', ')).explode('history')

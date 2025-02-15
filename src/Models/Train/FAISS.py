@@ -13,7 +13,8 @@ from src.Utils.variables import GetVariable, script_dir
 
 def TrainModel(_logger):
     _logger.info('Iniciando treinamento do modelo FAISS...')
-    news_data = read_all_csv_files_in_folder(GetVariable('NewsPath'))
+    news_data = read_all_csv_files_in_folder(os.path.join(script_dir,GetVariable('NewsPath')))
+    
     news_data["content"] = news_data["title"] + " " + news_data["body"] + " " + news_data["caption"]
 
     _logger.info('Iniciando vetorização do conteúdo das notícias...')

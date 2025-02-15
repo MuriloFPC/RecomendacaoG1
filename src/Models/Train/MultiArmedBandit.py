@@ -85,7 +85,7 @@ def train_mab_model(df_users, mapping_index,_logger):
     return mab
 
 def TrainModelMAB(_logger):
-    df_users = read_all_csv_files_in_folder(GetVariable('UserNewsPath'))
+    df_users = read_all_csv_files_in_folder(os.path.join(script_dir,GetVariable('UserNewsPath')))
 
     mapping_index = create_mapping(df_users,_logger)
     mab = train_mab_model(df_users, mapping_index,_logger)
