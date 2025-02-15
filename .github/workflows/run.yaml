@@ -1,4 +1,4 @@
-name: Python application
+name: Treinamento e Deploy do Modelo
 
 on:
   push:
