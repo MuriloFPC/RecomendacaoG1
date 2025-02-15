@@ -14,7 +14,7 @@ def DownloadDataFromGoogleDrive(logger=Log):
     output_path = os.path.join(script_dir,'Data')
     ouuput_path_file = os.path.join(output_path,'Data.zip')
 
-    os.path.makedirs(output_path, exist_ok=True)
+    os.makedirs(output_path, exist_ok=True)
 
     if os.path.exists(ouuput_path_file):
         logger.info("Zip já existe, retornando")
