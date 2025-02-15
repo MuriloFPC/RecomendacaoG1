@@ -42,7 +42,7 @@ jobs:
           docker push recomendacao_g1:latest
 
       - name: Send log file to artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: train-log
           path: ./train.log
