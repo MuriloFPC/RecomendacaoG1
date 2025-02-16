@@ -85,12 +85,14 @@ def train_mab_model(df_users, mapping_index,_logger):
     return mab
 
 def TrainModelMAB(_logger):
+    _logger.info('Iniciando treinamento do modelo MAB...')
     df_users = read_all_csv_files_in_folder(os.path.join(script_dir,GetVariable('UserNewsPath')))
 
     mapping_index = create_mapping(df_users,_logger)
     mab = train_mab_model(df_users, mapping_index,_logger)
     baseOutputPath = os.path.join(script_dir,GetVariable('ModelOutputPath'),'MAB/')
     os.makedirs(baseOutputPath, exist_ok=True)
+    _logger.info('Salvando modelo MAB...')
     with open(baseOutputPath + 'mab.pkl', 'wb') as f:
         pickle.dump(mab, f)
     _logger.info('Modelo MAB treinado e salvo com sucesso.')
@@ -99,5 +101,6 @@ def TrainModelMAB(_logger):
         "mab_model": "mab.pkl",
         "mapping_index": mapping_index
     }
+    _logger.info('Salvando dados do modelo...')
     with open(baseOutputPath+"model_data.pkl", "wb") as f:
         pickle.dump(model_data, f)

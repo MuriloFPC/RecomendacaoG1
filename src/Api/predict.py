@@ -1,13 +1,12 @@
 import os
 import pickle
-
 import pandas as pd
-
 from src.Utils.log import Log
 import faiss
 from src.Api.models import RecomentationRequest, NewsRecommended
 from src.Utils.train import read_all_csv_files_in_folder
 from src.Utils.variables import GetVariable, script_dir
+
 
 baseOutputPath = os.path.join(script_dir,GetVariable('ModelOutputPath'))
 #load model
@@ -82,7 +81,7 @@ def GetPredictionByMab(request: RecomentationRequest, qt_recommendation: int) ->
     user_exists = df_users['userId'].eq(request.userId).any()
 
     if not user_exists:
-        print(f"Usuário com ID {request.userId} não encontrado.")
+        logs.info(f"Usuário com ID {request.userId} não encontrado.")
         return
 
     user_history_str = df_users[df_users['userId'] == request.userId]['history'].iloc[0]
@@ -116,6 +115,8 @@ def GetPredictionByMab(request: RecomentationRequest, qt_recommendation: int) ->
 
     recommended_titles = [news_id_to_title.get(news_id, "Título não encontrado")
                           for news_id in recommended_news_ids]
+
+    logs.info(f"Recomendações geradas para {request.userId}: {recommended_news_ids}")
 
     return [NewsRecommended(Id=k, Url=v, RecomentadionSource="MAB") for k, v in zip(recommended_news_ids, recommended_titles)]
 

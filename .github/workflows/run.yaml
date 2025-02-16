@@ -2,7 +2,7 @@ name: Treinamento e Deploy do Modelo
 
 on:
   push:
-    branches: [ master333 ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Train model
         run: |
-          python -m src.Models.Orquetrator
+          python -m src.Models.Orchestrator
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2

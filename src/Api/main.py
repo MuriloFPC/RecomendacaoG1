@@ -27,17 +27,14 @@ async def root():
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
 
-@app.post("/recomendation")
-async def recomendation(request: RecomentationRequest):
+@app.post("/recommendation")
+async def recommendation(request: RecomentationRequest):
     response = RecomentationResponse()
 
-    predictionLastedNews = GetLastedNews(2)
-    response.newsRecommended = predictionLastedNews
+    response.newsRecommended = GetLastedNews(2)
 
-    predictionNewsId = GetPredictionByFaiss(request, 2)
-    response.newsRecommended.append(predictionNewsId)
+    response.newsRecommended.append(GetPredictionByFaiss(request, 2))
 
-    predictionMba = GetPredictionByMab(request, 2)
-    response.newsRecommended.append(predictionMba)
+    response.newsRecommended.append(GetPredictionByMab(request, 2))
 
     return response
