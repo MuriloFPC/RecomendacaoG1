@@ -51,13 +51,13 @@ def GetLastedNews(qt_recomedation:int) -> list[NewsRecommended]:
 def GetPredictionByFaiss(request: RecomentationRequest, qt_recommendation: int) -> list[NewsRecommended]:
     if not request.newsId:
         logs.info("Nenhuma notícia informada")
-        return {}
+        return []
 
     # Verificar se a notícia existe no índice
     read_index = news_index.get(request.newsId)
     if read_index is None:
         logs.error(f"Notícia não encontrada. NewsID: {request.newsId}")
-        return {}
+        return []
 
     # Pegar o vetor da notícia
     read_vector = tfidf_reduced_faiss[read_index].reshape(1, -1)
@@ -82,7 +82,7 @@ def GetPredictionByMab(request: RecomentationRequest, qt_recommendation: int) ->
 
     if not user_exists:
         logs.info(f"Usuário com ID {request.userId} não encontrado.")
-        return
+        return []
 
     user_history_str = df_users[df_users['userId'] == request.userId]['history'].iloc[0]
     history_ids = user_history_str.split(', ')
