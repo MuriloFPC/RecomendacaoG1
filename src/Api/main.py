@@ -33,8 +33,8 @@ async def recommendation(request: RecomentationRequest):
 
     response.newsRecommended = GetLastedNews(2)
 
-    response.newsRecommended.append(GetPredictionByFaiss(request, 2))
+    response.newsRecommended.extend(GetPredictionByFaiss(request, 2))
 
-    response.newsRecommended.append(GetPredictionByMab(request, 2))
+    response.newsRecommended.extend(GetPredictionByMab(request, 2))
 
     return response
