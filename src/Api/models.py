@@ -1,9 +1,9 @@
+from typing import Optional
 from pydantic import BaseModel
 
 class RecomentationRequest(BaseModel):
-    newsId: str
-    userId: str
-
+    newsId: Optional[str] = None
+    userId: Optional[str] = None
 class NewsRecommended(BaseModel):
     Id: str
     Url: str
